@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class PlayerLogic : MonoBehaviour
 {
     //Custom variable for speed in the Inspector
     [SerializeField]
     private float _speed = 4.5f;
+    //Custom variable for spawning bullet prefab
+    [SerializeField]
+    private GameObject _bulletPrefab;
+    //True-False variable for checking if the user can fire another bullet
+    private bool _bulletCanFire = true;
+
+    IEnumerator BulletReloadTimer()
+    {
+        yield return new WaitForSeconds(.5f);
+        _bulletCanFire = true;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +30,16 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         ControlMovement();
+
+        //if button is pressed and released AND check if the user can fire another bullet
+        //spawn bullet prefab with Player position and default quaternian rotation
+        if (Input.GetButtonDown("Fire1") && _bulletCanFire)
+        {
+            Instantiate(_bulletPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
+            _bulletCanFire = false;
+            StartCoroutine(BulletReloadTimer());
+        }
+
     }
 
     //Method contains all logic for moving the Player Character
