@@ -6,16 +6,17 @@ public class PlayerLogic : MonoBehaviour
 {
     //Custom variable for speed in the Inspector
     [SerializeField]
-    private float _speed = 4.5f;
+    private float _speed = 8f;
     //Custom variable for spawning bullet prefab
     [SerializeField]
     private GameObject _bulletPrefab;
     //True-False variable for checking if the user can fire another bullet
     private bool _bulletCanFire = true;
 
+    //Coroutine for cooldown on pressing "Fire1"
     IEnumerator BulletReloadTimer()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.125f);
         _bulletCanFire = true;
     }
 
@@ -31,13 +32,10 @@ public class PlayerLogic : MonoBehaviour
     {
         ControlMovement();
 
-        //if button is pressed and released AND check if the user can fire another bullet
-        //spawn bullet prefab with Player position and default quaternian rotation
+        //if button is pressed AND check if the user can fire another bullet
         if (Input.GetButtonDown("Fire1") && _bulletCanFire)
         {
-            Instantiate(_bulletPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
-            _bulletCanFire = false;
-            StartCoroutine(BulletReloadTimer());
+            ControlBulletFire();
         }
 
     }
@@ -72,4 +70,13 @@ public class PlayerLogic : MonoBehaviour
             transform.position = new Vector3(9.4f, transform.position.y, 0);
         }
     }
+
+    //Method contains logic for spawning and destroying bullets
+    void ControlBulletFire()
+    {
+        Instantiate(_bulletPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
+        _bulletCanFire = false;
+        StartCoroutine(BulletReloadTimer());
+    }
+
 }
