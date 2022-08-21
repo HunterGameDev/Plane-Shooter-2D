@@ -12,6 +12,10 @@ public class PlayerLogic : MonoBehaviour
     private GameObject _bulletPrefab;
     //True-False variable for checking if the user can fire another bullet
     private bool _bulletCanFire = true;
+    //Custom variable for how many hits/lives the Player has before being destroyed
+    [SerializeField]
+    private int _lives = 3;
+
 
     //Coroutine for cooldown on pressing "Fire1"
     IEnumerator BulletReloadTimer()
@@ -79,4 +83,25 @@ public class PlayerLogic : MonoBehaviour
         StartCoroutine(BulletReloadTimer());
     }
 
+    //Method contains logic for colliding with Enemies
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //if other is Enemy damage the player then destroy the Enemy
+      if (other.tag == "Enemy")
+        {
+            Damage();
+            Destroy(other.gameObject);
+        }
+    }
+
+    //Method containing logic for damaging the player and removing hits/lives
+    void Damage()
+    {
+        _lives--;
+
+        if (_lives < 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

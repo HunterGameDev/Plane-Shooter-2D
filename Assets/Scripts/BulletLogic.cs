@@ -27,4 +27,14 @@ public class BulletLogic : MonoBehaviour
         }
 
     }
+
+    //Method contains logic for colliding with Enemies
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
 }
