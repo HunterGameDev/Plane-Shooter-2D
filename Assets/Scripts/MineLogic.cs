@@ -37,7 +37,7 @@ public class MineLogic : MonoBehaviour
 
         if (transform.position.y < -6f)
         {
-            RandomSpawn();
+            Destroy(this.gameObject);
         }
     }
 }

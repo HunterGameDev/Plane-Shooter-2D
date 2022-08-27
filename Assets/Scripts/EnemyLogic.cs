@@ -25,7 +25,7 @@ public class EnemyLogic : MonoBehaviour
     //Method contains logic for spawning on a random x position above the player screen
     void RandomSpawn()
     {
-        _xPosition = Random.Range(-8.3f, 8.3f);
+        _xPosition = Random.Range(-8.9f, 8.9f);
         _spawnPosition = new Vector3(_xPosition, 6, 0);
         transform.position = _spawnPosition;
     }

@@ -15,7 +15,8 @@ public class PlayerLogic : MonoBehaviour
     //Custom variable for how many hits/lives the Player has before being destroyed
     [SerializeField]
     private int _lives = 3;
-
+    //Variable for finding the SpawnManager Object
+    private SpawnManagerLogic _spawnManager;
 
     //Coroutine for cooldown on pressing "Fire1"
     IEnumerator BulletReloadTimer()
@@ -29,6 +30,14 @@ public class PlayerLogic : MonoBehaviour
     {
         //start Player Character at center
         transform.position = new Vector3(0, 0, 0);
+        //Find the SpawnManager Object, Get the Script Component
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManagerLogic>();
+
+        //Null check for _spawnManager
+        if (_spawnManager == null)
+        {
+            Debug.LogError("The Spawn Manager is NULL.");
+        }
     }
 
     // Update is called once per frame
@@ -59,9 +68,9 @@ public class PlayerLogic : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
         }
-        else if (transform.position.y <= -4.4f)
+        else if (transform.position.y <= -4.9f)
         {
-            transform.position = new Vector3(transform.position.x, -4.4f, 0);
+            transform.position = new Vector3(transform.position.x, -4.9f, 0);
         }
 
         //player wrap-around x axis
@@ -101,6 +110,7 @@ public class PlayerLogic : MonoBehaviour
 
         if (_lives < 1)
         {
+            _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
     }

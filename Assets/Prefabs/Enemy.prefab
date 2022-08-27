@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3681218096078096795}
   - component: {fileID: 8500240247406903582}
   - component: {fileID: 414284167853617468}
-  - component: {fileID: 5772787923180960845}
+  - component: {fileID: 5358902339865236098}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.735849, g: 0.28114986, b: 0.49678957, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: c1d957b93a104f44197af2749b3ce552, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
---- !u!58 &5772787923180960845
-CircleCollider2D:
+--- !u!70 &5358902339865236098
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,6 +112,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00023829937, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.41765636
+  m_Offset: {x: 0.03927511, y: 0.3473843}
+  m_Size: {x: 0.7418325, y: 0.86267847}
+  m_Direction: 0
