@@ -4,10 +4,26 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    //Bullet speed variable
     [SerializeField]
     private float _speed = 12f;
-    
+    [SerializeField]
+    private GameObject _tripleShotPower;
+    [SerializeField]
+    private GameObject _speedBoostPower;
+    [SerializeField]
+    private GameObject _armorUpPower;
+    [SerializeField]
+    private GameObject _explosionObject;
+
+    private int _percentChance = 0;
+    [SerializeField]
+    private int _expectedValue = 60;
+
+    [SerializeField]
+    private int _maxPowerUps;
+
+    private int _randomPower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,24 +33,70 @@ public class BulletLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //moves the bullet at a rate based on seconds
-        transform.Translate(Vector3.up * _speed * Time.deltaTime);
-
-        //destroys the bullet if it reaches a certain distance
-        if (transform.position.y >= 7f)
+        if (this.gameObject.transform.name == "Bullet(Clone)")
         {
-            Destroy(gameObject);
-        }
+            transform.Translate(Vector3.up * _speed * Time.deltaTime);
 
+            if (transform.position.y >= 4.8f)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else if (this.gameObject.transform.name == "TripleShotEmpty(Clone)")
+        {
+            transform.Translate(Vector3.up * _speed * Time.deltaTime);
+
+            if (transform.position.y >= 4.8f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
-    //Method contains logic for colliding with Enemies
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy")
         {
+            Instantiate(_explosionObject, other.transform.position, Quaternion.identity);
+            GetNewPercentChance();
+            if (_percentChance >= _expectedValue)
+            {
+                GetNewRandomPower();
+                switch (_randomPower)
+                {
+                    case 0:
+                        Instantiate(_tripleShotPower, other.transform.position, Quaternion.identity);
+                        break;
+                    case 1:
+                        Instantiate(_speedBoostPower, other.transform.position, Quaternion.identity);
+                        break;
+                    case 2:
+                        Instantiate(_armorUpPower, other.transform.position, Quaternion.identity);
+                        break;
+                    default:
+                        Debug.Log("_randomPower does not match numerical value.");
+                        break;
+                }
+            }
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            if (this.gameObject.transform.name == "Bullet(Clone)")
+            {
+                Destroy(this.gameObject);
+            }
+            else if (this.gameObject.transform.name == "TripleShotEmpty(Clone)")
+            {
+                Destroy(this.gameObject);
+            }
         }
+    }
+
+    void GetNewPercentChance()
+    {
+        _percentChance = Random.Range(1, 100);
+    }
+
+    void GetNewRandomPower()
+    {
+        _randomPower = Random.Range(0, (_maxPowerUps--));
     }
 }

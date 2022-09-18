@@ -4,38 +4,48 @@ using UnityEngine;
 
 public class BackgroundLogic : MonoBehaviour
 {
-    //Custom variable for background movement speed
     [SerializeField]
     private float _speed = 1f;
+    private SpawnManagerLogic _spawnManager;
 
+    private bool _canSpawn = true;
+
+    IEnumerator BackgroundSpawnTimer()
+    {
+        yield return new WaitForSeconds(15f);
+        _canSpawn = true;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //transform new Vector3 for start location
-        transform.position = new Vector3(0, 24.7f, 0);
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManagerLogic>();
 
+        if (_spawnManager == null)
+        {
+            Debug.LogError("The Spawn Manager is NULL.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Start method
         ControlMovement();
 
+        if (transform.position.y <= -26.9f && _canSpawn)
+        {
+            _spawnManager.BottomScrollReached();
+            _canSpawn = false;
+            StartCoroutine(BackgroundSpawnTimer());
+        }
+        else if (transform.position.y <= -38f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    //Method containing logic for moving background by the speed variable and time.deltatime
     void ControlMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
     }
-
-
-
-
-
-
-
-
 }

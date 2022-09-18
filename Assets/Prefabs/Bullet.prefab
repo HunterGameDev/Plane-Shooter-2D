@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5802291635873001464}
+  - component: {fileID: -4911021694775986450}
   - component: {fileID: 8715365955154719248}
   - component: {fileID: 5978929296099131151}
-  - component: {fileID: -4911021694775986450}
   - component: {fileID: -8514445300899509922}
   m_Layer: 0
   m_Name: Bullet
@@ -35,6 +35,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4911021694775986450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968321284729573025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9850db252477fa243bbe0deea1489fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 10
+  _tripleShotPower: {fileID: 6977648288051317996, guid: ffccc7f9a3d5c714d94edc9028fa1853, type: 3}
+  _speedBoostPower: {fileID: 5041900177217269208, guid: 2cefd79820a8ade43b91c434771eeba9, type: 3}
+  _armorUpPower: {fileID: 5501361127331803302, guid: 7b1510faa3f576346a124c9ef4228b7c, type: 3}
+  _explosionObject: {fileID: 7741682993629144027, guid: 46fed9bb125bd214194ea9d23598a6ae, type: 3}
+  _expectedValue: 60
+  _maxPowerUps: 3
 --- !u!212 &8715365955154719248
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,7 +94,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4c73a345ed5f4ab48bd4c9388fd21483, type: 3}
   m_Color: {r: 1, g: 0.7414487, b: 0, a: 1}
   m_FlipX: 0
@@ -103,19 +122,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.014899112, y: 0.04336962}
   m_Size: {x: 0.11677523, y: 0.2062934}
   m_Direction: 0
---- !u!114 &-4911021694775986450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7968321284729573025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9850db252477fa243bbe0deea1489fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 12
 --- !u!50 &-8514445300899509922
 Rigidbody2D:
   serializedVersion: 4

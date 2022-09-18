@@ -3,7 +3,11 @@ guid: 9850db252477fa243bbe0deea1489fa8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _tripleShotPower: {fileID: 6977648288051317996, guid: ffccc7f9a3d5c714d94edc9028fa1853, type: 3}
+  - _speedBoostPower: {fileID: 5041900177217269208, guid: 2cefd79820a8ade43b91c434771eeba9, type: 3}
+  - _armorUpPower: {fileID: 5501361127331803302, guid: 7b1510faa3f576346a124c9ef4228b7c, type: 3}
+  - _explosionObject: {fileID: 7741682993629144027, guid: 46fed9bb125bd214194ea9d23598a6ae, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

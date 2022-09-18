@@ -22,7 +22,6 @@ public class EnemyLogic : MonoBehaviour
         ControlMovement();
     }
 
-    //Method contains logic for spawning on a random x position above the player screen
     void RandomSpawn()
     {
         _xPosition = Random.Range(-8.9f, 8.9f);
@@ -30,7 +29,6 @@ public class EnemyLogic : MonoBehaviour
         transform.position = _spawnPosition;
     }
 
-    //Method contains logic for moving the enemy towards the bottom of the screen
     void ControlMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
