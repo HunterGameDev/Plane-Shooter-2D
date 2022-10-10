@@ -14,6 +14,7 @@ public class BulletLogic : MonoBehaviour
     private GameObject _armorUpPower;
     [SerializeField]
     private GameObject _explosionObject;
+    private AudioSource _explosionAudioSource;
 
     private int _percentChance = 0;
     [SerializeField]
@@ -24,10 +25,22 @@ public class BulletLogic : MonoBehaviour
 
     private int _randomPower;
 
+    private UILogic _uiManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _uiManager = GameObject.Find("UI Manager").GetComponent<UILogic>();
+        if (_uiManager == null)
+        {
+            Debug.LogError("The UI Manager is NULL.");
+        }
+
+        _explosionAudioSource = GameObject.Find("ExplosionSound").GetComponent<AudioSource>();
+        if (_explosionAudioSource == null)
+        {
+            Debug.LogError("The Explosion Audio is NULL.");
+        }
     }
 
     // Update is called once per frame
@@ -57,8 +70,10 @@ public class BulletLogic : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            _uiManager.IncreaseScore();
             Instantiate(_explosionObject, other.transform.position, Quaternion.identity);
             GetNewPercentChance();
+            _explosionAudioSource.Play();
             if (_percentChance >= _expectedValue)
             {
                 GetNewRandomPower();

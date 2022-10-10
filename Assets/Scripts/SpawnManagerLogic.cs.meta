@@ -1,16 +1,9 @@
 fileFormatVersion: 2
-guid: 06a385cdcb267da49b6a871d1d877d02
+guid: 49b0371f8222a8246a4f697fcad0b8fe
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - _basicEnemyType: {fileID: 5390882416571388353, guid: 078fe2960597d134ba58cddf444dd3a6, type: 3}
-  - _basicMineType: {fileID: 725494223569721130, guid: e6920bbe5d558e94ea442bceab0832b4, type: 3}
-  - _containerTypeEnemy: {instanceID: 0}
-  - _containerTypeMine: {instanceID: 0}
-  - _firstBackground: {fileID: 7567549681695649499, guid: efcd377d01064ee49a1b98d308095e44, type: 3}
-  - _secondBackground: {fileID: 7567549681695649499, guid: efcd377d01064ee49a1b98d308095e44, type: 3}
-  - _cloudLayer: {fileID: 7388597948534651836, guid: d03c04cd32c29cb4ba347eef1850d216, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
