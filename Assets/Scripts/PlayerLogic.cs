@@ -191,6 +191,7 @@ public class PlayerLogic : MonoBehaviour
         _noBoostActive = false;
         GameObject newSpeedVFX = Instantiate(_speedVFX, this.gameObject.transform.position, Quaternion.identity);
         newSpeedVFX.transform.parent = this.gameObject.transform;
+        _playerCollider.enabled = false;
         Time.timeScale = _speedMultiplier;
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         _hasSpeedBoostItem = false;
@@ -203,6 +204,7 @@ public class PlayerLogic : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = this.fixedDeltaTime;
         _noBoostActive = true;
+        _playerCollider.enabled = true;
         _childVFX = GameObject.Find("SpeedBoostVFX(Clone)");
         Destroy(_childVFX);
     }

@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuLogic : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _creditsScreen;
+    [SerializeField]
+    private GameObject _optionsScreen;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _creditsScreen.SetActive(false);
+        _optionsScreen.SetActive(false);
     }
 
     public void PlayGame()
@@ -24,16 +24,23 @@ public class MenuLogic : MonoBehaviour
 
     public void OpenOptions()
     {
-        Debug.Log("Options was selected.");
+        _optionsScreen.SetActive(true);
     }
 
     public void OpenCredits()
     {
-        Debug.Log("Credits was selected.");
+        _creditsScreen.SetActive(true);
+    }
+
+    public void GoBack()
+    {
+        _creditsScreen.SetActive(false);
+        _optionsScreen.SetActive(false);
     }
 
     public void ExitGame()
     {
         Debug.Log("Quit was selected.");
+        Application.Quit();
     }
 }

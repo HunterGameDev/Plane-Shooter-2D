@@ -69,7 +69,7 @@ public class SpawnManagerLogic : MonoBehaviour
     {
         if (_spawnNewBackground == true)
         {
-            Instantiate(_secondBackground, transform.position + new Vector3(0, 37.85f, 0), Quaternion.identity);
+            Instantiate(_secondBackground, transform.position + new Vector3(0, 37.7f, 0), Quaternion.identity);
             _spawnNewBackground = false;
         }
     }

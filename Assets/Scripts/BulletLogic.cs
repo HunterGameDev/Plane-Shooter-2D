@@ -70,37 +70,44 @@ public class BulletLogic : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            _uiManager.IncreaseScore();
-            Instantiate(_explosionObject, other.transform.position, Quaternion.identity);
-            GetNewPercentChance();
-            _explosionAudioSource.Play();
-            if (_percentChance >= _expectedValue)
+            if (other.transform.name == "EnemyBullets(Clone)")
             {
-                GetNewRandomPower();
-                switch (_randomPower)
+                return;
+            }
+            else
+            {
+                _uiManager.IncreaseScore();
+                Instantiate(_explosionObject, other.transform.position, Quaternion.identity);
+                GetNewPercentChance();
+                _explosionAudioSource.Play();
+                if (_percentChance >= _expectedValue)
                 {
-                    case 0:
-                        Instantiate(_tripleShotPower, other.transform.position, Quaternion.identity);
-                        break;
-                    case 1:
-                        Instantiate(_speedBoostPower, other.transform.position, Quaternion.identity);
-                        break;
-                    case 2:
-                        Instantiate(_armorUpPower, other.transform.position, Quaternion.identity);
-                        break;
-                    default:
-                        Debug.Log("_randomPower does not match numerical value.");
-                        break;
+                    GetNewRandomPower();
+                    switch (_randomPower)
+                    {
+                        case 0:
+                            Instantiate(_tripleShotPower, other.transform.position, Quaternion.identity);
+                            break;
+                        case 1:
+                            Instantiate(_speedBoostPower, other.transform.position, Quaternion.identity);
+                            break;
+                        case 2:
+                            Instantiate(_armorUpPower, other.transform.position, Quaternion.identity);
+                            break;
+                        default:
+                            Debug.Log("_randomPower does not match numerical value.");
+                            break;
+                    }
                 }
-            }
-            Destroy(other.gameObject);
-            if (this.gameObject.transform.name == "Bullet(Clone)")
-            {
-                Destroy(this.gameObject);
-            }
-            else if (this.gameObject.transform.name == "TripleShotEmpty(Clone)")
-            {
-                Destroy(this.gameObject);
+                Destroy(other.gameObject);
+                if (this.gameObject.transform.name == "Bullet(Clone)")
+                {
+                    Destroy(this.gameObject);
+                }
+                else if (this.gameObject.transform.name == "TripleShotEmpty(Clone)")
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }

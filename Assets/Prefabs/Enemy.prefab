@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _enemyBullets: {fileID: 4691122867573692933, guid: 690621d973c18ed42a20115ea71b248f, type: 3}
 --- !u!212 &8500240247406903582
 SpriteRenderer:
   m_ObjectHideFlags: 0
